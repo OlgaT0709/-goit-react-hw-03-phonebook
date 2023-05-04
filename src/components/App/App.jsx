@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
+import localStore from '../../utils/localstorage'
 import { Container, Title, SubTitle, ContactContainer } from './App.styled';
 import initialContacts from '../../data/data.json';
 
@@ -26,10 +27,31 @@ export class App extends Component {
               
  
   state = {
-    contacts: this.props.contacts,
+    // contacts: this.props.contacts,
+    contacts: [],
     filter: '',
     
   };
+
+   componentDidMount() {
+  
+    const parsedContacts = localStore.load('contacts');
+ 
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+   
+    const nextContacts = this.state.contacts;
+    const prevContacts = prevState.contacts;
+
+    if (nextContacts !== prevContacts) {
+          localStore.save('contacts', nextContacts);
+    }
+
+    }
 
   modifyContactList = (newContact) => {
     const { name, number } = newContact;
