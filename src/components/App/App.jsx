@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 import {save, load} from '../../utils/localstorage'
 import { Container, Title, SubTitle, ContactContainer } from './App.styled';
-import initialContacts from '../../data/data.json';
 
 import { ContactForm } from '../ContactForm';
 import {Filter} from '../Filter';
@@ -12,22 +10,10 @@ import { ContactList } from '../ContactList';
 
 export class App extends Component {
 
-  static defaultProps = {
-    contacts: initialContacts,
-  };
-
- 
-  static propTypes = {
-    contacts: PropTypes.arrayOf(PropTypes.exact({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-       })),
-};
-              
+             
  
   state = {
-    // contacts: this.props.contacts,
+    
     contacts: [],
     filter: '',
     
