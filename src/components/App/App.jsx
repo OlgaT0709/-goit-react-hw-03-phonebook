@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
-import localStore from '../../utils/localstorage'
+import {save, load, remove} from '../../utils/localstorage'
 import { Container, Title, SubTitle, ContactContainer } from './App.styled';
 import initialContacts from '../../data/data.json';
 
@@ -35,7 +35,7 @@ export class App extends Component {
 
    componentDidMount() {
   
-    const parsedContacts = localStore.load('contacts');
+    const parsedContacts = load('contacts');
  
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts });
@@ -48,7 +48,7 @@ export class App extends Component {
     const prevContacts = prevState.contacts;
 
     if (nextContacts !== prevContacts) {
-          localStore.save('contacts', nextContacts);
+          save('contacts', nextContacts);
     }
 
     }
