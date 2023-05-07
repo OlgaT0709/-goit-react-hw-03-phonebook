@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
-import {save, load, remove} from '../../utils/localstorage'
+import {save, load} from '../../utils/localstorage'
 import { Container, Title, SubTitle, ContactContainer } from './App.styled';
 import initialContacts from '../../data/data.json';
 
