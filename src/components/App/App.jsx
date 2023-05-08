@@ -21,8 +21,8 @@ export class App extends Component {
 
    componentDidMount() {
   
-    const parsedContacts = load('contacts');
- 
+     const parsedContacts = load('contacts');
+   
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts });
     }
@@ -71,16 +71,18 @@ export class App extends Component {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
     
-        
+       
     return (
       <Container>
         <Title>Phonebook</Title>
         <ContactForm state={this.state} modifyContactList={this.modifyContactList}  />
+        {contacts.length > 0 ?
         <ContactContainer>
           <SubTitle>Contacts {contacts.length} </SubTitle>
           <Filter value={filter} onChangeFilter={this.changeFilter} />
-          <ContactList contactList={filteredContacts} onDelContact={this.delContact } />
+          <ContactList contactList={filteredContacts} onDelContact={this.delContact} />  
         </ContactContainer>
+          : null}
         
       </Container>
     );
